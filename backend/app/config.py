@@ -15,6 +15,7 @@ values, so misconfiguration fails loudly instead of silently.
 """
 from typing import Literal
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -51,7 +52,11 @@ class Settings(BaseSettings):
     max_page_chars: int = 20_000
 
     # --- CORS ------------------------------------------------------------------
-    cors_origins: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+    # Example env value: CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    cors_origins: list[str] = Field(
+        default=["http://localhost:5173", "http://localhost:3000"],
+        validation_alias="CORS_ORIGINS",
+    )
 
 
 settings = Settings()
