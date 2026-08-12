@@ -52,9 +52,9 @@ class Settings(BaseSettings):
     max_page_chars: int = 20_000
 
     # --- CORS ------------------------------------------------------------------
-    # Example env value: CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    # Example env value: CORS_ORIGINS=["http://localhost:5173", "http://localhost:3000"]
     cors_origins: list[str] = Field(
-        default=["http://localhost:5173", "http://localhost:3000"],
+        default=[],
         validation_alias="CORS_ORIGINS",
     )
 
